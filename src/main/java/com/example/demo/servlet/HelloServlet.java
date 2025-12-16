@@ -1,5 +1,8 @@
 package com.example.demo.servlet;
 
-public class HelloServlet {
+public class HelloServlet extends HttpServlet{
+    
+    @WebServlet("/")
+    
     
 }
