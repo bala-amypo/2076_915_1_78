@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 
 @Entity
+@Table
 public class VolunteerProfile {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
