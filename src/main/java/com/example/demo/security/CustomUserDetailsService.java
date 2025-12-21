@@ -17,49 +17,45 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     
-    // public Map<String, Object> registerUser(
-        //     String name,
-        //     String email,
-        //     String encodedPassword,
-        //     String role) {
+    public Map<String, Object> registerUser(
+            String name,
+            String email,
+            String encodedPassword,
+            String role) {
 
-        // Long userId = idGenerator.getAndIncrement();
+        Long userId = idGenerator.getAndIncrement();
 
-        // StoredUser stored = new StoredUser(
-        //         userId,
-        //         email,
-        //         encodedPassword,
-        //         role
-        // );
+        StoredUser stored = new StoredUser(
+                userId,
+                email,
+                encodedPassword,
+                role
+        );
 
-        // usersByEmail.put(email, stored);
+        usersByEmail.put(email, stored);
 
-        // Map<String, Object> result = new HashMap<>();
-        // result.put("userId", userId);
-        // result.put("email", email);
-        // result.put("role", role);
-    // return result;
+        Map<String, Object> result = new HashMap<>();
+        result.put("userId", userId);
+        result.put("email", email);
+        result.put("role", role);
 
-        return null;
+        return result;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
-        // StoredUser stored = usersByEmail.get(email);
+        StoredUser stored = usersByEmail.get(email);
 
-        // if (stored == null) {
-        //     throw new UsernameNotFoundException("User not found");
-        // }
+        if (stored == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
-        // return User.withUsername(stored.email)
-        //         .password(stored.password)
-        //         .authorities(stored.role)
-        //         .build();
-
-
-        return null;
+        return User.withUsername(stored.email)
+                .password(stored.password)
+                .authorities(stored.role)
+                .build();
     }
 
     /**
