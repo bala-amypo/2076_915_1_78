@@ -30,15 +30,16 @@ public class JwtTokenProvider {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMillis);
 
-        return Jwts.builder()
-                .subject(email)
-                .issuedAt(now)
-                .expiration(expiry)
-                .claim("email", email)
-                .claim("userId", userId)
-                .claim("role", role)
-                .signWith(key)   // ✅ correct for jjwt 0.11.x
-                .compact();
+       return Jwts.builder()
+        .setSubject(email)
+        .setIssuedAt(now)
+        .setExpiration(expiry)
+        .claim("email", email)
+        .claim("userId", userId)
+        .claim("role", role)
+        .signWith(key)
+        .compact();
+
     }
 
     public boolean validateToken(String token) {
