@@ -17,7 +17,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     
-    public Map<String, Object> registerUser(
+    // public Map<String, Object> registerUser(
         //     String name,
         //     String email,
         //     String encodedPassword,
@@ -39,6 +39,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         // result.put("email", email);
         // result.put("role", role);
     // return result;
+
         return null;
     }
 
@@ -46,16 +47,19 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
-        StoredUser stored = usersByEmail.get(email);
+        // StoredUser stored = usersByEmail.get(email);
 
-        if (stored == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
+        // if (stored == null) {
+        //     throw new UsernameNotFoundException("User not found");
+        // }
 
-        return User.withUsername(stored.email)
-                .password(stored.password)
-                .authorities(stored.role)
-                .build();
+        // return User.withUsername(stored.email)
+        //         .password(stored.password)
+        //         .authorities(stored.role)
+        //         .build();
+
+
+        return null;
     }
 
     /**
