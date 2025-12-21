@@ -57,10 +57,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .authorities(stored.role)
                 .build();
     }
-
-    /**
-     * Internal holder
-     */
     private static class StoredUser {
         Long id;
         String email;
