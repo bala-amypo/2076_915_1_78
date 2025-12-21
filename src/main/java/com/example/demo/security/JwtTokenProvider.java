@@ -1,6 +1,8 @@
 package com.example.demo.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.Authentication;
 
@@ -29,13 +31,13 @@ public class JwtTokenProvider {
         Date expiry = new Date(now.getTime() + expirationMillis);
 
         return Jwts.builder()
-                .setSubject(email)
-                .setIssuedAt(now)
-                .setExpiration(expiry)
+                .subject(email)
+                .issuedAt(now)
+                .expiration(expiry)
                 .claim("email", email)
                 .claim("userId", userId)
                 .claim("role", role)
-                .signWith(key, SignatureAlgorithm.HS256)
+                .signWith(key)   // ✅ correct for jjwt 0.11.x
                 .compact();
     }
 
