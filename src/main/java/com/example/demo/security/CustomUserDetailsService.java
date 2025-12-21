@@ -16,32 +16,30 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final Map<String, StoredUser> usersByEmail = new HashMap<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
 
-    /**
-     * Used directly in tests
-     */
+    
     public Map<String, Object> registerUser(
-            String name,
-            String email,
-            String encodedPassword,
-            String role) {
+        //     String name,
+        //     String email,
+        //     String encodedPassword,
+        //     String role) {
 
-        Long userId = idGenerator.getAndIncrement();
+        // Long userId = idGenerator.getAndIncrement();
 
-        StoredUser stored = new StoredUser(
-                userId,
-                email,
-                encodedPassword,
-                role
-        );
+        // StoredUser stored = new StoredUser(
+        //         userId,
+        //         email,
+        //         encodedPassword,
+        //         role
+        // );
 
-        usersByEmail.put(email, stored);
+        // usersByEmail.put(email, stored);
 
-        Map<String, Object> result = new HashMap<>();
-        result.put("userId", userId);
-        result.put("email", email);
-        result.put("role", role);
-
-        return result;
+        // Map<String, Object> result = new HashMap<>();
+        // result.put("userId", userId);
+        // result.put("email", email);
+        // result.put("role", role);
+    // return result;
+        return null;
     }
 
     @Override
