@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+import jakarta.validation.Valid;
 import com.example.demo.dto.AvailabilityUpdateRequest;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.model.VolunteerProfile;
