@@ -5,12 +5,13 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Component;
 
 @Component
 public class JwtTokenProvider {
@@ -18,30 +19,31 @@ public class JwtTokenProvider {
     private final SecretKey key;
     private final long expirationMillis;
 
-    public JwtTokenProvider(String secret, long expirationMillis) {
+    public JwtTokenProvider(
+            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.expiration-ms}") long expirationMillis) {
+
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.expirationMillis = expirationMillis;
     }
 
-    public String generateToken(
-            Authentication authentication,
-            Long userId,
-            String role) {
+    public String generateToken(Authentication authentication,
+                                Long userId,
+                                String role) {
 
         String email = authentication.getName();
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMillis);
 
-       return Jwts.builder()
-        .setSubject(email)
-        .setIssuedAt(now)
-        .setExpiration(expiry)
-        .claim("email", email)
-        .claim("userId", userId)
-        .claim("role", role)
-        .signWith(key)
-        .compact();
-
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(now)
+                .setExpiration(expiry)
+                .claim("email", email)
+                .claim("userId", userId)
+                .claim("role", role)
+                .signWith(key)
+                .compact();
     }
 
     public boolean validateToken(String token) {
@@ -58,8 +60,7 @@ public class JwtTokenProvider {
     }
 
     public Map<String, Object> getAllClaims(String token) {
-        Claims claims = parseClaims(token);
-        return new HashMap<>(claims);
+        return new HashMap<>(parseClaims(token));
     }
 
     private Claims parseClaims(String token) {
@@ -70,4 +71,3 @@ public class JwtTokenProvider {
                 .getBody();
     }
 }
-
