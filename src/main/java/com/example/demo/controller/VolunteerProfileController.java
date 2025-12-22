@@ -21,7 +21,7 @@ public class VolunteerProfileController {
         return service.createVolunteer(profile);
     }
 
-    @PatchMapping("/{id}/availability")
+    @PutMapping("/{id}/availability")
     public VolunteerProfile updateAvailability(
             @PathVariable Long id,
             @RequestBody AvailabilityUpdateRequest req) {
