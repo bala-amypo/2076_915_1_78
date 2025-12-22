@@ -15,7 +15,7 @@ public class VolunteerProfile {
 
     private String volunteerId;
     private String fullName;
-    @Email(msg="enter valid mail")
+    @Email(message="enter valid mail")
     private String email;
     private String phone;
     private String availabilityStatus;
