@@ -12,7 +12,7 @@ public class VolunteerProfileController {
 
     private final VolunteerProfileService service;
 
-    public VolunteerProfileController(VolunteerProfileService service) {
+    public VolunteerProfileController(@ValVolunteerProfileService service) {
         this.service = service;
     }
 
