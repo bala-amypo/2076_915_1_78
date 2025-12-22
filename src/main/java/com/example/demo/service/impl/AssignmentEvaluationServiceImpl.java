@@ -8,7 +8,10 @@ import com.example.demo.repository.AssignmentEvaluationRecordRepository;
 import com.example.demo.repository.TaskAssignmentRecordRepository;
 import com.example.demo.service.AssignmentEvaluationService;
 
+
 import java.util.List;
+import org.springframework.stereotype.Service;
+
 @Service
 public class AssignmentEvaluationServiceImpl
         implements AssignmentEvaluationService {

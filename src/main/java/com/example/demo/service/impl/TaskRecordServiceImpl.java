@@ -7,7 +7,9 @@ import com.example.demo.service.TaskRecordService;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TaskRecordServiceImpl implements TaskRecordService {
 
     private final TaskRecordRepository repository;

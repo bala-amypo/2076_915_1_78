@@ -6,7 +6,9 @@ import com.example.demo.service.VolunteerSkillService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VolunteerSkillServiceImpl implements VolunteerSkillService {
 
     private final VolunteerSkillRecordRepository repository;

@@ -8,7 +8,9 @@ import com.example.demo.service.VolunteerProfileService;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VolunteerProfileServiceImpl implements VolunteerProfileService {
 
     private final VolunteerProfileRepository repository;
