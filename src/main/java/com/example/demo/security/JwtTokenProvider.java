@@ -14,60 +14,60 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JwtTokenProvider {
+// public class JwtTokenProvider {
 
-    private final SecretKey key;
-    private final long expirationMillis;
+//     private final SecretKey key;
+//     private final long expirationMillis;
 
-    public JwtTokenProvider(
-            @Value("${jwt.secret}") String secret,
-            @Value("${jwt.expiration-ms}") long expirationMillis) {
+//     public JwtTokenProvider(
+//             @Value("${jwt.secret}") String secret,
+//             @Value("${jwt.expiration-ms}") long expirationMillis) {
 
-        this.key = Keys.hmacShaKeyFor(secret.getBytes());
-        this.expirationMillis = expirationMillis;
-    }
+//         this.key = Keys.hmacShaKeyFor(secret.getBytes());
+//         this.expirationMillis = expirationMillis;
+//     }
 
-    public String generateToken(Authentication authentication,
-                                Long userId,
-                                String role) {
+//     public String generateToken(Authentication authentication,
+//                                 Long userId,
+//                                 String role) {
 
-        String email = authentication.getName();
-        Date now = new Date();
-        Date expiry = new Date(now.getTime() + expirationMillis);
+//         String email = authentication.getName();
+//         Date now = new Date();
+//         Date expiry = new Date(now.getTime() + expirationMillis);
 
-        return Jwts.builder()
-                .setSubject(email)
-                .setIssuedAt(now)
-                .setExpiration(expiry)
-                .claim("email", email)
-                .claim("userId", userId)
-                .claim("role", role)
-                .signWith(key)
-                .compact();
-    }
+//         return Jwts.builder()
+//                 .setSubject(email)
+//                 .setIssuedAt(now)
+//                 .setExpiration(expiry)
+//                 .claim("email", email)
+//                 .claim("userId", userId)
+//                 .claim("role", role)
+//                 .signWith(key)
+//                 .compact();
+//     }
 
-    public boolean validateToken(String token) {
-        try {
-            parseClaims(token);
-            return true;
-        } catch (JwtException | IllegalArgumentException ex) {
-            return false;
-        }
-    }
+//     public boolean validateToken(String token) {
+//         try {
+//             parseClaims(token);
+//             return true;
+//         } catch (JwtException | IllegalArgumentException ex) {
+//             return false;
+//         }
+//     }
 
-    public String getUsernameFromToken(String token) {
-        return parseClaims(token).getSubject();
-    }
+//     public String getUsernameFromToken(String token) {
+//         return parseClaims(token).getSubject();
+//     }
 
-    public Map<String, Object> getAllClaims(String token) {
-        return new HashMap<>(parseClaims(token));
-    }
+//     public Map<String, Object> getAllClaims(String token) {
+//         return new HashMap<>(parseClaims(token));
+//     }
 
-    private Claims parseClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
+//     private Claims parseClaims(String token) {
+//         return Jwts.parserBuilder()
+//                 .setSigningKey(key)
+//                 .build()
+//                 .parseClaimsJws(token)
+//                 .getBody();
+//     }
 }
