@@ -9,7 +9,7 @@ import com.example.demo.repository.TaskAssignmentRecordRepository;
 import com.example.demo.service.AssignmentEvaluationService;
 
 import java.util.List;
-
+@Service
 public class AssignmentEvaluationServiceImpl
         implements AssignmentEvaluationService {
 
