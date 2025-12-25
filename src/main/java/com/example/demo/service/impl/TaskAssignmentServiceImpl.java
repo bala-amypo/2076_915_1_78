@@ -39,13 +39,20 @@ public class TaskAssignmentServiceImpl implements TaskAssignmentService {
     @Override
     public TaskAssignmentRecord assignTask(Long taskId) {
 
-        
+        if (assignmentRepo.existsByTaskIdAndStatus(taskId, "ACTIVE")) {
+            throw new BadRequestException("ACTIVE assignment already exists");
+        }
 
-       
+        TaskRecord task = taskRepo.findById(taskId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Task not found"));
+
         List<VolunteerProfile> volunteers =
                 volunteerRepo.findByAvailabilityStatus("AVAILABLE");
 
-        
+        if (volunteers.isEmpty()) {
+            throw new BadRequestException("No AVAILABLE volunteers");
+        }
 
         for (VolunteerProfile v : volunteers) {
             List<VolunteerSkillRecord> skills =
@@ -76,7 +83,7 @@ public class TaskAssignmentServiceImpl implements TaskAssignmentService {
             }
         }
 
-        
+        throw new BadRequestException("Volunteer does not meet required skill level");
     }
 
     @Override
