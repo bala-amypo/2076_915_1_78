@@ -8,9 +8,7 @@ import com.example.demo.service.VolunteerProfileService;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Service;
 
-@Service
 public class VolunteerProfileServiceImpl implements VolunteerProfileService {
 
     private final VolunteerProfileRepository repository;
@@ -22,7 +20,16 @@ public class VolunteerProfileServiceImpl implements VolunteerProfileService {
     @Override
     public VolunteerProfile createVolunteer(VolunteerProfile profile) {
 
-       
+        if (repository.existsByVolunteerId(profile.getVolunteerId())) {
+            throw new BadRequestException("VolunteerId already exists");
+        }
+        if (repository.existsByEmail(profile.getEmail())) {
+            throw new BadRequestException("Email already exists");
+        }
+        if (repository.existsByPhone(profile.getPhone())) {
+            throw new BadRequestException("Phone already exists");
+        }
+
         return repository.save(profile);
     }
 
