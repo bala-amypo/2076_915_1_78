@@ -16,36 +16,14 @@ public class TaskAssignmentRecord {
 
     public TaskAssignmentRecord() {}
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    // ✅ REQUIRED BY TESTS
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getTaskId() { return taskId; }
+    public void setTaskId(Long taskId) { this.taskId = taskId; }
 
-    public Long getTaskId() {
-        return taskId;
-    }
+    public Long getVolunteerId() { return volunteerId; }
+    public void setVolunteerId(Long volunteerId) { this.volunteerId = volunteerId; }
 
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
-    }
-
-    public Long getVolunteerId() {
-        return volunteerId;
-    }
-
-    public void setVolunteerId(Long volunteerId) {
-        this.volunteerId = volunteerId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

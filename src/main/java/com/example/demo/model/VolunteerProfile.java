@@ -1,7 +1,4 @@
 package com.example.demo.model;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import jakarta.persistence.*;
 
@@ -15,7 +12,6 @@ public class VolunteerProfile {
 
     private String volunteerId;
     private String fullName;
-    @Email(message="enter valid mail")
     private String email;
     private String phone;
     private String availabilityStatus;
