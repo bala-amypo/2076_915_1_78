@@ -10,7 +10,9 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import 
 
+@Component
 public class JwtTokenProvider {
 
     private final SecretKey key;
