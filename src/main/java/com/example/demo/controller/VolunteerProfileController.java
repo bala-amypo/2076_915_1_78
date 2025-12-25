@@ -24,7 +24,7 @@ public class VolunteerProfileController {
     @PutMapping("/{id}/availability")
     public VolunteerProfile updateAvailability(
             @PathVariable Long id,
-            @RequestBody AvailabilityUpdateRequest req) {
+        @RequestBody VolunteerProfile req) {
 
         VolunteerProfile p = service.getVolunteerById(id);
         p.setAvailabilityStatus(req.getAvailabilityStatus());
