@@ -15,7 +15,7 @@ public class JwtTokenProvider {
     private final Key key;
     private final long expiry;
 
-    // ✅ ONLY constructor Spring should see
+    // ✅ ONLY constructor — NO PARAMETERS
     public JwtTokenProvider() {
         this.key = Keys.hmacShaKeyFor(
                 "VerySecretKeyForJwtDemoApplication123456".getBytes()
