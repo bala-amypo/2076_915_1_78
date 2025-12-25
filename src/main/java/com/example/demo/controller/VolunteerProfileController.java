@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-import jakarta.validation.Valid;
+
 import com.example.demo.dto.AvailabilityUpdateRequest;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.model.VolunteerProfile;
@@ -12,7 +12,7 @@ public class VolunteerProfileController {
 
     private final VolunteerProfileService service;
 
-    public VolunteerProfileController(@Valid VolunteerProfileService service) {
+    public VolunteerProfileController(VolunteerProfileService service) {
         this.service = service;
     }
 
@@ -21,7 +21,7 @@ public class VolunteerProfileController {
         return service.createVolunteer(profile);
     }
 
-    @PutMapping("/{id}/availability")
+    @PatchMapping("/{id}/availability")
     public VolunteerProfile updateAvailability(
             @PathVariable Long id,
             @RequestBody AvailabilityUpdateRequest req) {

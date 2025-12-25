@@ -4,19 +4,18 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final Map<String, StoredUser> usersByEmail = new HashMap<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
 
-    
+    /**
+     * Used directly in tests
+     */
     public Map<String, Object> registerUser(
             String name,
             String email,
@@ -57,6 +56,10 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .authorities(stored.role)
                 .build();
     }
+
+    /**
+     * Internal holder
+     */
     private static class StoredUser {
         Long id;
         String email;
@@ -71,6 +74,3 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
     }
 }
-
-
-
