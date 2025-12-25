@@ -14,14 +14,21 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                // ✅ allow swagger
                 .requestMatchers(
-                    "/swagger-ui/**",
-                    "/v3/api-docs/**",
-                    "/swagger-ui.html"
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-ui.html"
                 ).permitAll()
-                .anyRequest().permitAll()
+
+                // allow auth endpoints if you have them
+                .requestMatchers("/auth/**").permitAll()
+
+                // everything else secured
+                .anyRequest().authenticated()
             )
-            .formLogin(form -> form.disable());
+            .formLogin(form -> form.disable())
+            .httpBasic(basic -> basic.disable());
 
         return http.build();
     }
