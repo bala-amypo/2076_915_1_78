@@ -25,14 +25,19 @@ public class SecurityConfig {
                 3600000L
         );
     }
-
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(
-            JwtTokenProvider jwtTokenProvider,
-            CustomUserDetailsService userDetailsService) {
+public JwtAuthenticationFilter jwtAuthenticationFilter(
+        JwtTokenProvider jwtTokenProvider,
+        CustomUserDetailsService customUserDetailsService) {
 
-        return new JwtAuthenticationFilter(jwtTokenProvider, userDetailsService);
-    }
+    return new JwtAuthenticationFilter(
+            jwtTokenProvider,
+            customUserDetailsService
+    );
+}
+
+
+   
 
     @Bean
     public SecurityFilterChain securityFilterChain(
