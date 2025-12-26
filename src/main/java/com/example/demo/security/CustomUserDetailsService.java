@@ -7,7 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-
+import org.springframework.stere
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final Map<String, StoredUser> usersByEmail = new HashMap<>();
