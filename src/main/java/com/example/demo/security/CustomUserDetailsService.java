@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import org.springframework.stere
+import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
