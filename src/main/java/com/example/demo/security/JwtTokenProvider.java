@@ -8,7 +8,9 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JwtTokenProvider {
 
     private final SecretKey key;
@@ -19,7 +21,10 @@ public class JwtTokenProvider {
         this.expirationMillis = expirationMillis;
     }
 
-    public String generateToken(Authentication authentication, Long userId, String role) {
+    public String generateToken(
+            Authentication authentication,
+            Long userId,
+            String role) {
 
         String email = authentication.getName();
         Date now = new Date();
@@ -50,7 +55,8 @@ public class JwtTokenProvider {
     }
 
     public Map<String, Object> getAllClaims(String token) {
-        return new HashMap<>(parseClaims(token));
+        Claims claims = parseClaims(token);
+        return new HashMap<>(claims);
     }
 
     private Claims parseClaims(String token) {
