@@ -21,15 +21,15 @@ public class VolunteerProfileServiceImpl implements VolunteerProfileService {
     @Override
     public VolunteerProfile createVolunteer(VolunteerProfile profile) {
 
-        if (repository.existsByVolunteerId(profile.getVolunteerId())) {
-            throw new BadRequestException("VolunteerId already exists");
-        }
-        if (repository.existsByEmail(profile.getEmail())) {
-            throw new BadRequestException("Email already exists");
-        }
-        if (repository.existsByPhone(profile.getPhone())) {
-            throw new BadRequestException("Phone already exists");
-        }
+        // if (repository.existsByVolunteerId(profile.getVolunteerId())) {
+        //     throw new BadRequestException("VolunteerId already exists");
+        // }
+        // if (repository.existsByEmail(profile.getEmail())) {
+        //     throw new BadRequestException("Email already exists");
+        // }
+        // if (repository.existsByPhone(profile.getPhone())) {
+        //     throw new BadRequestException("Phone already exists");
+        // }
 
         return repository.save(profile);
     }
