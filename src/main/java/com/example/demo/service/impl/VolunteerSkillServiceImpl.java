@@ -26,4 +26,4 @@ public class VolunteerSkillServiceImpl implements VolunteerSkillService {
     public List<VolunteerSkillRecord> getSkillsByVolunteer(Long volunteerId) {
         return repository.findByVolunteerId(volunteerId);
     }
-}
+}r
