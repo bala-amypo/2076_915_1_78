@@ -22,7 +22,7 @@ public class SwaggerConfig {
                 // Server configuration (your provided URL)
                 .servers(List.of(
                         new Server()
-                                .url("https://9090.408procr.amypo.ai")
+                                .url("https://9090.408procr.amypo.ai/")
                                 .description("Remote Server")
                 ))
 
