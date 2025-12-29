@@ -17,16 +17,14 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                // API Info
-               
-                // Server configuration (your provided URL)
+              
                 .servers(List.of(
                         new Server()
                                 .url("https://9090.408procr.amypo.ai/")
                                 .description("Remote Server")
                 ))
 
-                // JWT Security
+              
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(new Components()
                         .addSecuritySchemes("bearerAuth",
